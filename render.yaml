@@ -1,0 +1,46 @@
+services:
+  # 1. Custom Postgres Database (Private Service)
+  # Render's managed DB doesn't support custom extensions like HypoPG.
+  # We deploy our custom Postgres Dockerfile as a private, internal-only service.
+  - type: pserv
+    name: querydoctor-db
+    env: docker
+    dockerfilePath: ./postgres/Dockerfile
+    disk:
+      name: pgdata
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 1
+    envVars:
+      - key: POSTGRES_USER
+        value: querydoctor
+      - key: POSTGRES_PASSWORD
+        generateValue: true
+      - key: POSTGRES_DB
+        value: querydoctor
+
+  # 2. Node.js Backend API (Web Service)
+  - type: web
+    name: querydoctor-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      # Interpolate the password generated above to securely connect to the private DB
+      - key: DATABASE_URL
+        value: postgres://querydoctor:${POSTGRES_PASSWORD}@querydoctor-db:5432/querydoctor
+      - key: PORT
+        value: 3000
+
+  # 3. React Frontend (Static Site)
+  # Deploying as a Static Site is much faster and cheaper than running a Docker container.
+  - type: web
+    name: querydoctor-ui
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0
+      # IMPORTANT: You must manually update this in the Render Dashboard once your backend deploys!
+      # It should look like: https://querydoctor-api-xxxx.onrender.com/api
+      - key: VITE_API_URL
+        value: placeholder-update-me

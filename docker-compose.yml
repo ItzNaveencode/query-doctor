@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./postgres
+    environment:
+      POSTGRES_USER: querydoctor
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: querydoctor
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U querydoctor"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      # Connect to the internal 'db' service hostname
+      DATABASE_URL: postgres://querydoctor:password@db:5432/querydoctor
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # During local docker-compose testing, the frontend API fetch goes to localhost:3000
+        # In production deployment, you would pass the actual backend deployment URL here
+        VITE_API_URL: http://localhost:3000/api
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
