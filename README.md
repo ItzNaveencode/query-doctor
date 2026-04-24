@@ -54,6 +54,16 @@ Simulator + Risk Engine
 ↓  
 PostgreSQL (Neon)
 
+## 🤖 MCP (Model Context Protocol) Integration
+
+QueryDoctor includes an MCP server that exposes database analysis tools to LLM agents.
+
+This allows AI systems to:
+- Fetch slow queries
+- Analyze execution plans
+- Get optimization recommendations
+
+Note: The current web UI uses REST APIs, while MCP is designed for agent-based integrations.
 
 ## 🚀 Run Locally
 ```bash
