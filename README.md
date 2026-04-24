@@ -43,15 +43,17 @@ I built QueryDoctor to:
 - Input validation
 
 ## 🏗️ Architecture
-Frontend (React)
-        ↓
-Backend API (Node.js)
-        ↓
-Analyzer Engine
-        ↓
-Simulator + Risk Engine
-        ↓
+
+Frontend (React)  
+↓  
+Backend API (Node.js)  
+↓  
+Analyzer Engine  
+↓  
+Simulator + Risk Engine  
+↓  
 PostgreSQL (Neon)
+
 
 ## 🚀 Run Locally
 ```bash
