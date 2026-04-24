@@ -65,6 +65,28 @@ This allows AI systems to:
 
 Note: The current web UI uses REST APIs, while MCP is designed for agent-based integrations.
 
+## 🤖 Using QueryDoctor with AI (MCP)
+
+QueryDoctor supports the Model Context Protocol (MCP), allowing AI agents to use it as a tool.
+
+### Example (Claude Desktop)
+
+1. Install Claude Desktop
+2. Add this to config:
+
+```json
+{
+  "mcpServers": {
+    "query-doctor": {
+      "command": "node",
+      "args": ["./mcp-server/index.js"],
+      "env": {
+        "API_BASE_URL": "https://query-doctor-api.onrender.com/api"
+      }
+    }
+  }
+}
+
 ## 🚀 Run Locally
 ```bash
 git clone https://github.com/ItzNaveencode/query-doctor.git
