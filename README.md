@@ -42,6 +42,17 @@ I built QueryDoctor to:
 - Query timeout protection
 - Input validation
 
+## 🏗️ Architecture
+Frontend (React)
+        ↓
+Backend API (Node.js)
+        ↓
+Analyzer Engine
+        ↓
+Simulator + Risk Engine
+        ↓
+PostgreSQL (Neon)
+
 ## 🚀 Run Locally
 ```bash
 git clone https://github.com/ItzNaveencode/query-doctor.git
