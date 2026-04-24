@@ -86,6 +86,7 @@ QueryDoctor supports the Model Context Protocol (MCP), allowing AI agents to use
     }
   }
 }
+```
 
 ## 🚀 Run Locally
 ```bash
