@@ -1,0 +1,56 @@
+# 🚀 QueryDoctor — AI Database Performance Assistant
+
+## 🔍 Overview
+QueryDoctor analyzes PostgreSQL queries, detects performance issues, and provides safe, explainable optimization suggestions without modifying production systems.
+
+## 🌐 Live Demo
+Frontend: https://query-doctor.vercel.app  
+Backend: https://query-doctor-api.onrender.com  
+
+⚠️ Backend may take ~30–50 seconds on first request (free tier cold start).
+
+## 💡 Why I Built This
+While working with databases, I noticed that identifying slow queries and deciding whether to add indexes is often guesswork.
+
+I built QueryDoctor to:
+- Make query optimization explainable
+- Avoid risky production changes
+- Provide data-backed decisions using simulation
+
+## ⚙️ Features
+- Detects sequential scans and inefficiencies
+- Suggests safe CREATE INDEX queries
+- Simulates performance improvement
+- Shows cost before vs after
+- Evaluates write penalty and storage impact
+- Blocks unsafe queries (INSERT, UPDATE, DELETE, DROP)
+
+## 🏗️ Tech Stack
+- Frontend: React + Vite
+- Backend: Node.js + Express
+- Database: PostgreSQL (Neon)
+- Deployment: Vercel + Render
+
+## 🔒 Safety
+- Only SELECT queries allowed
+- No automatic execution of SQL
+- Query timeout protection
+- Input validation
+
+## 🚀 Run Locally
+```bash
+git clone https://github.com/ItzNaveencode/query-doctor.git
+cd query-doctor
+npm install
+node src/index.js
+```
+
+Frontend:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## 👨‍💻 Author
+Naveen Mydur
