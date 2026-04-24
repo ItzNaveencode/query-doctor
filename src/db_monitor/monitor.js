@@ -1,9 +1,10 @@
 const { Pool } = require('pg');
 
-// Initialize Postgres connection pool
-// In production, configure via environment variables (.env)
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/postgres'
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 /**
