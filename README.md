@@ -1,3 +1,8 @@
+![Status](https://img.shields.io/badge/status-live-success)
+![Backend](https://img.shields.io/badge/backend-Node.js-green)
+![Frontend](https://img.shields.io/badge/frontend-React-blue)
+![Database](https://img.shields.io/badge/database-PostgreSQL-blue)
+![Deployment](https://img.shields.io/badge/deployed-Vercel%20%7C%20Render-purple)
 # 🚀 QueryDoctor — AI Database Performance Assistant
 
 ## 🔍 Overview
